@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
     'movies',
     'user_details',
 ]
@@ -83,6 +84,8 @@ DATABASES = {
         'PORT': 5432,
     }
 }
+
+OMDB_API_KEY = "ASD"
 
 
 # Password validation
