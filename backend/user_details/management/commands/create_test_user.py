@@ -15,8 +15,7 @@ class Command(BaseCommand):
         user, created = User.objects.get_or_create(username=username)
         user.set_password(password)
 
-        if created:
-            UserDetails.objects.create(user=user)
+        details, _ = UserDetails.objects.get_or_create(user=user)
 
         self.stdout.write(self.style.SUCCESS(
             f"Created user for testing \n Username: '{username}' \n Password: '{password}'"

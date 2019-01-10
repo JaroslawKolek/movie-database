@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+    'rest_framework',
     'movies',
     'user_details',
 ]
@@ -85,7 +86,7 @@ DATABASES = {
     }
 }
 
-OMDB_API_KEY = "ASD"
+OMDB_API_KEY = "54b25332"
 
 
 # Password validation
