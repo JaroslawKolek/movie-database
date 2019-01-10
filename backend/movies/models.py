@@ -11,6 +11,7 @@ class Production(models.Model):
 
 class Movie(models.Model):
     title = models.CharField(max_length=256)
+    imdb_id = models.CharField(max_length=256, unique=True)
     language = models.CharField(max_length=120, blank=True)
     runtime = models.CharField(max_length=50, blank=True)
     release_date = models.DateField()
