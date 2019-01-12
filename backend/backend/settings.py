@@ -92,8 +92,12 @@ DATABASES = {
     }
 }
 
+# This key should be in local.env
 OMDB_API_KEY = "54b25332"
 
+FIXTURE_DIRS = (
+   '/backend/movies/fixtures/',
+)
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators

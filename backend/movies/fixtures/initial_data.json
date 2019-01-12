@@ -1,0 +1,100 @@
+[
+  {
+    "model": "movies.production",
+    "pk": 1,
+    "fields": {
+      "name": "20th Century Fox"
+    }
+  },
+  {
+    "model": "movies.production",
+    "pk": 2,
+    "fields": {
+      "name": "Hulu"
+    }
+  },
+  {
+    "model": "movies.production",
+    "pk": 3,
+    "fields": {
+      "name": "Tartan Films"
+    }
+  },
+  {
+    "model": "movies.production",
+    "pk": 4,
+    "fields": {
+      "name": "N/A"
+    }
+  },
+  {
+    "model": "movies.movie",
+    "pk": 1,
+    "fields": {
+      "title": "X-Men",
+      "imdb_id": "tt0120903",
+      "language": "",
+      "runtime": "",
+      "release_date": null,
+      "poster_url": "",
+      "director": null,
+      "production": 1
+    }
+  },
+  {
+    "model": "movies.movie",
+    "pk": 2,
+    "fields": {
+      "title": "Becoming Bond",
+      "imdb_id": "tt6110504",
+      "language": "",
+      "runtime": "",
+      "release_date": null,
+      "poster_url": "",
+      "director": null,
+      "production": 2
+    }
+  },
+  {
+    "model": "movies.movie",
+    "pk": 3,
+    "fields": {
+      "title": "Princess",
+      "imdb_id": "tt0419073",
+      "language": "",
+      "runtime": "",
+      "release_date": null,
+      "poster_url": "",
+      "director": null,
+      "production": 3
+    }
+  },
+  {
+    "model": "movies.movie",
+    "pk": 4,
+    "fields": {
+      "title": "Model",
+      "imdb_id": "tt0081169",
+      "language": "",
+      "runtime": "",
+      "release_date": null,
+      "poster_url": "",
+      "director": null,
+      "production": 4
+    }
+  },
+  {
+    "model": "movies.movie",
+    "pk": 5,
+    "fields": {
+      "title": "Charlie",
+      "imdb_id": "tt5082014",
+      "language": "",
+      "runtime": "",
+      "release_date": null,
+      "poster_url": "",
+      "director": null,
+      "production": 4
+    }
+  }
+]
