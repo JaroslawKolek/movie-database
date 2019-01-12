@@ -1,12 +1,12 @@
 from django.conf import settings
 from rest_framework.views import APIView
-from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.generics import ListAPIView
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 import omdb
 
-from movies.serializers.movies_serializer import MovieSerializer
+from movies.serializers import MovieSerializer
 from movies.models import Movie
 
 
