@@ -1,10 +1,10 @@
-from django.test import TestCase
 from django.shortcuts import reverse
 from rest_framework.authtoken.models import Token
+from rest_framework.test import APITestCase
 from user_details.utils import create_test_user_and_user_details
 
 
-class UserLoginTestCase(TestCase):
+class UserLoginTestCase(APITestCase):
     """ Test User login endpoint """
 
     def setUp(self):

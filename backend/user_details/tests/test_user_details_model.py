@@ -1,11 +1,11 @@
-from django.test import TestCase
 from django.contrib.auth.models import User
+from rest_framework.test import APITestCase
 
 from user_details.models import UserDetails
 from user_details.utils import create_test_user_and_user_details
 
 
-class UserDetailsModelTestCase(TestCase):
+class UserDetailsModelTestCase(APITestCase):
     """ Basic Models tests for UserDetails """
 
     def setUp(self):
