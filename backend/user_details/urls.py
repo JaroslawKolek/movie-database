@@ -6,5 +6,5 @@ app_name = 'user_details'
 
 urlpatterns = [
     path('login/', LoginView.as_view(), name='login'),
-    path('favorite-movies/', UserFavouriteMovieManagementView.as_view(), name='get-favorite-movies'),
+    path('favorite-movies/', UserFavouriteMovieManagementView.as_view(), name='manage-favorite-movies'),
 ]

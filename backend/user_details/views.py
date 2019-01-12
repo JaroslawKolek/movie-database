@@ -19,10 +19,10 @@ class UserFavouriteMovieManagementView(APIView):
         if movie is None:
             return Response("Movie not found", status=HTTP_404_NOT_FOUND)
 
-        if request.user.userdetails.favourite_movies.filter(imdb_id=imdb_id).exists():
-            request.user.userdetails.favourite_movies.remove(movie)
+        if request.user.userdetails.favorites_movies.filter(imdb_id=imdb_id).exists():
+            request.user.userdetails.favorites_movies.remove(movie)
         else:
-            request.user.userdetails.favourite_movies.add(movie)
+            request.user.userdetails.favorites_movies.add(movie)
         return Response()
 
     def get_movie(self, imdb_id):
