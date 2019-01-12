@@ -4,9 +4,9 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from .services.omdb_api_service import OMDbService
-from .serializers.movies_serializer import MovieSerializer
-from .models import Movie, Production
+from movies.services.omdb_api_service import OMDbService
+from movies.serializers.movies_serializer import MovieSerializer
+from movies.models import Movie, Production
 
 
 class MoviesListView(APIView):

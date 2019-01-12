@@ -1,15 +1,17 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
-from django.core.management import call_command
 
-from ..models import UserDetails
+from user_details.models import UserDetails
+from user_details.utils import create_test_user_and_user_details
 
 
 class UserDetailsModelTestCase(TestCase):
     """ Basic Models tests for UserDetails """
 
     def setUp(self):
-        call_command('create_test_user')
+        self.username = "username"
+        self.password = "password"
+        self.user, self.details = create_test_user_and_user_details(self.username, self.password)
 
     def test_if_user_created_by_management_command(self):
         self.assertEqual(UserDetails.objects.count(), 1)

@@ -1,11 +1,12 @@
-from django.au import authenticate
+from django.contrib.auth import authenticate
 from rest_framework.views import APIView
 from rest_framework.status import HTTP_404_NOT_FOUND, HTTP_400_BAD_REQUEST
+from rest_framework.authtoken.models import Token
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from backend.movies.models import Movie
+from movies.models import Movie
 
 
 class UserFavouriteMovieManagementView(APIView):
@@ -31,9 +32,9 @@ class UserFavouriteMovieManagementView(APIView):
 
 class LoginView(APIView):
     def post(self, request):
-        login = request.data.get('login')
+        username = request.data.get('username')
         password = request.data.get('password')
-        user = authenticate(login=login, password=password)
+        user = authenticate(username=username, password=password)
         if not user:
             return Response("Username or password is incorrect", status=HTTP_400_BAD_REQUEST)
-        return Response(TokenAuthentication.model.objects.get_or_create(user=user))
+        return Response(Token.objects.get_or_create(user=user)[0].key)
