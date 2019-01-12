@@ -1,100 +1,92 @@
 [
   {
-    "model": "movies.production",
-    "pk": 1,
-    "fields": {
-      "name": "20th Century Fox"
-    }
-  },
-  {
-    "model": "movies.production",
-    "pk": 2,
-    "fields": {
-      "name": "Hulu"
-    }
-  },
-  {
-    "model": "movies.production",
-    "pk": 3,
-    "fields": {
-      "name": "Tartan Films"
-    }
-  },
-  {
-    "model": "movies.production",
-    "pk": 4,
-    "fields": {
-      "name": "N/A"
-    }
-  },
-  {
     "model": "movies.movie",
     "pk": 1,
     "fields": {
-      "title": "X-Men",
-      "imdb_id": "tt0120903",
-      "language": "",
-      "runtime": "",
-      "release_date": null,
-      "poster_url": "",
-      "director": null,
-      "production": 1
+      "title": "Good Luck Charlie",
+      "imdb_id": "tt1415889",
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BMjI5NjUzMTcwNF5BMl5BanBnXkFtZTgwODE3NzQxMDE@._V1_SX300.jpg"
     }
   },
   {
     "model": "movies.movie",
     "pk": 2,
     "fields": {
-      "title": "Becoming Bond",
-      "imdb_id": "tt6110504",
-      "language": "",
-      "runtime": "",
-      "release_date": null,
-      "poster_url": "",
-      "director": null,
-      "production": 2
+      "title": "The Charlie Brown and Snoopy Show",
+      "imdb_id": "tt0084996",
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BMTgyOTAwMDMxOV5BMl5BanBnXkFtZTcwMzYzNTgyMQ@@._V1_SX300.jpg"
     }
   },
   {
     "model": "movies.movie",
     "pk": 3,
     "fields": {
-      "title": "Princess",
-      "imdb_id": "tt0419073",
-      "language": "",
-      "runtime": "",
-      "release_date": null,
-      "poster_url": "",
-      "director": null,
-      "production": 3
+      "title": "Charlie Jade",
+      "imdb_id": "tt0408378",
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BMTk0MzgxODI4N15BMl5BanBnXkFtZTcwNzg3NDcyMQ@@._V1_SX300.jpg"
     }
   },
   {
     "model": "movies.movie",
     "pk": 4,
     "fields": {
-      "title": "Model",
-      "imdb_id": "tt0081169",
-      "language": "",
-      "runtime": "",
-      "release_date": null,
-      "poster_url": "",
-      "director": null,
-      "production": 4
+      "title": "Charlie Brooker's Weekly Wipe",
+      "imdb_id": "tt2657242",
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BMzhlMmM3ODYtMjllZC00MzFmLWJiZDktMGViMjBjNDFmYTliXkEyXkFqcGdeQXVyMjQ1NjEyNzE@._V1_SX300.jpg"
     }
   },
   {
     "model": "movies.movie",
     "pk": 5,
     "fields": {
+      "title": "Charlie and Lola",
+      "imdb_id": "tt0487813",
+      "poster_url": "https://ia.media-imdb.com/images/M/MV5BMTMxNTgxMzY3MV5BMl5BanBnXkFtZTcwNDkyMTU1MQ@@._V1_SX300.jpg"
+    }
+  },
+  {
+    "model": "movies.movie",
+    "pk": 6,
+    "fields": {
+      "title": "Charlie Rose",
+      "imdb_id": "tt0270116",
+      "poster_url": "https://images-na.ssl-images-amazon.com/images/M/MV5BMjExOTQ0NDc2N15BMl5BanBnXkFtZTgwMDI2NTgwMzE@._V1_SX300.jpg"
+    }
+  },
+  {
+    "model": "movies.movie",
+    "pk": 7,
+    "fields": {
+      "title": "Alpha Bravo Charlie",
+      "imdb_id": "tt2298792",
+      "poster_url": "http://ia.media-imdb.com/images/M/MV5BNzEzZmRlZjctNjViMi00ZTA5LTg0MGItYmEwYjM2OWZlOWNhXkEyXkFqcGdeQXVyMzc0NzU5MTc@._V1_SX300.jpg"
+    }
+  },
+  {
+    "model": "movies.movie",
+    "pk": 8,
+    "fields": {
+      "title": "This Is America, Charlie Brown",
+      "imdb_id": "tt0286397",
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BMTY0MDA5NDIxOV5BMl5BanBnXkFtZTcwODE4NzIzMQ@@._V1_SX300.jpg"
+    }
+  },
+  {
+    "model": "movies.movie",
+    "pk": 9,
+    "fields": {
       "title": "Charlie",
-      "imdb_id": "tt5082014",
-      "language": "",
-      "runtime": "",
-      "release_date": null,
-      "poster_url": "",
-      "director": null,
-      "production": 4
+      "imdb_id": "tt3176254",
+      "poster_url": "https://images-na.ssl-images-amazon.com/images/M/MV5BMDgwYWY2YzgtZTAwMS00NWIzLWJjMDEtODUzZTUzZGQ0ZGYxXkEyXkFqcGdeQXVyMjA3OTg0NDg@._V1_SX300.jpg"
+    }
+  },
+  {
+    "model": "movies.movie",
+    "pk": 10,
+    "fields": {
+      "title": "Charlie Chalk",
+      "imdb_id": "tt0436999",
+      "poster_url": "https://images-na.ssl-images-amazon.com/images/M/MV5BNTUzMzA2MDk4OV5BMl5BanBnXkFtZTgwOTg3ODkwMzE@._V1_SX300.jpg"
     }
   }
 ]
