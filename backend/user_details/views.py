@@ -38,3 +38,12 @@ class LoginView(APIView):
         if not user:
             return Response("Username or password is incorrect", status=HTTP_400_BAD_REQUEST)
         return Response(Token.objects.get_or_create(user=user)[0].key)
+
+
+class LogoutView(APIView):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request):
+        Token.objects.filter(user=request.user).delete()
+        return Response()
