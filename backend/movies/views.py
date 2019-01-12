@@ -11,14 +11,14 @@ from movies.models import Movie
 
 
 class MoviesSearchView(APIView):
-    # authentication_classes = (TokenAuthentication,)
-    # permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
 
     def get(self, request):
         movies_client = omdb.OMDBClient(apikey=settings.OMDB_API_KEY)
 
         title = request.GET.get('title', '')
-        page = request.GET.get('page', 1)
+        page = int(request.GET.get('page', 1))
 
         movies = movies_client.search_series(title, page=page)
 
@@ -32,7 +32,7 @@ class MoviesSearchView(APIView):
                 }
             )
             movies_to_return.append(instance)
-        return Response(data=MovieSerializer(data=movies_to_return, many=True))
+        return Response(data=MovieSerializer(movies_to_return, many=True).data)
 
 
 class FavoritesMoviesListView(ListAPIView):
