@@ -3,4 +3,4 @@ Django==2.0.2
 psycopg2
 djangorestframework
 requests
-ipython
+django-cors-headers==2.4.0

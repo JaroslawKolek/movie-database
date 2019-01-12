@@ -1,10 +1,10 @@
 from django.urls import path
 
-from .views import MoviesView, FavoritesMoviesView
+from .views import MoviesListView, FavoritesMoviesListView
 
 app_name = 'movies'
 
 urlpatterns = [
-    path('search/', MoviesView.as_view(), name='search_movies'),
-    path('favorites/', FavoritesMoviesView.as_view(), name='favorites_movies')
+    path('search/', MoviesListView.as_view(), name='search_movies'),
+    path('favorites/', FavoritesMoviesListView.as_view(), name='favorites_movies')
 ]
