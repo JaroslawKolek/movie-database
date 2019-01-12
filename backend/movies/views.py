@@ -1,12 +1,13 @@
+from django.conf import settings
 from rest_framework.views import APIView
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+import omdb
 
-from movies.services.omdb_api_service import OMDbService
 from movies.serializers.movies_serializer import MovieSerializer
-from movies.models import Movie, Production
+from movies.models import Movie
 
 
 class MoviesListView(APIView):
@@ -14,21 +15,21 @@ class MoviesListView(APIView):
     # permission_classes = (IsAuthenticated,)
 
     def get(self, request):
-        omdb_service = OMDbService()
+        movies_client = omdb.OMDBClient(apikey=settings.OMDB_API_KEY)
+
         title = request.GET.get('title', '')
         page = request.GET.get('page', 1)
 
         response = {
-            'movies': omdb_service.get_movies_by_title_search(title, page)
+            'movies': movies_client.search_series(title, page=page)
         }
 
         for movie in response.get('movies', []):
-            production, _ = Production.objects.get_or_create(name=movie.get('Production'))
             movie_obj, _ = Movie.objects.update_or_create(
-                imdb_id=movie.get('imdbID'),
+                imdb_id=movie.get('imdb_id'),
                 defaults={
-                    'title': movie.get('Title'),
-                    'production': production
+                    'title': movie.get('title'),
+                    'poster_url': movie.get('poster')
                 }
             )
         return Response(data=response)
