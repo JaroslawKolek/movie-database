@@ -10,7 +10,7 @@ from movies.serializers import MovieSerializer
 from movies.models import Movie
 
 
-class MoviesListView(APIView):
+class MoviesSearchView(APIView):
     # authentication_classes = (TokenAuthentication,)
     # permission_classes = (IsAuthenticated,)
 

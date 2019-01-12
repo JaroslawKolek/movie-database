@@ -1,7 +1,7 @@
-django-extensions
-Django==2.0.2
-psycopg2
-djangorestframework
-requests
+Django==2.1.5
+djangorestframework==3.9.0
+django-extensions==2.1.4
+psycopg2==2.7.6.1
+requests==2.21.0
 django-cors-headers==2.4.0
-omdb
+omdb==0.10.1
