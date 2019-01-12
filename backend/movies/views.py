@@ -20,35 +20,25 @@ class MoviesListView(APIView):
         title = request.GET.get('title', '')
         page = request.GET.get('page', 1)
 
-        response = {
-            'movies': movies_client.search_series(title, page=page)
-        }
+        movies = movies_client.search_series(title, page=page)
 
-        for movie in response.get('movies', []):
-            movie_obj, _ = Movie.objects.update_or_create(
-                imdb_id=movie.get('imdb_id'),
+        movies_to_return = []
+        for movie in movies:
+            instance, _ = Movie.objects.update_or_create(
+                imdb_id=movie['imdb_id'],
                 defaults={
-                    'title': movie.get('title'),
-                    'poster_url': movie.get('poster')
+                    'title': movie['title'],
+                    'poster_url': movie['poster']
                 }
             )
-        return Response(data=response)
+            movies_to_return.append(instance)
+        return Response(data=MovieSerializer(data=movies_to_return, many=True))
 
 
 class FavoritesMoviesListView(ListAPIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
     serializer_class = MovieSerializer
-
-    def get_queryset(self):
-        return self.request.user.userdetails.favorites_movies
-
-
-class FavoritesMovieView(RetrieveAPIView):
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (IsAuthenticated,)
-    serializer_class = MovieSerializer
-    lookup_field = 'imdb_id'
 
     def get_queryset(self):
         return self.request.user.userdetails.favorites_movies
