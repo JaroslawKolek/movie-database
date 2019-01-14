@@ -1,0 +1,33 @@
+.MovieBrowser {
+    background-color: white;
+    color: grey;
+    border-radius: 10px;
+}
+
+.FiltersSection {
+    background-color: #f1f1f1;
+    padding: 10px;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+.EmptyPageInfo {
+    margin: 100px auto;
+    width: 100%;
+    text-align: center;
+}
+
+.EmptyPageTitle {
+    color: grey;
+    font-size: 20px;
+}
+
+.EmptyPageSubTitle {
+    font-size: 10px;
+}
+
+.PagerSection {
+    width: 40%;
+    margin: auto;
+}
