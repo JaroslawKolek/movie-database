@@ -32,7 +32,7 @@ class MoviesSearchView(APIView):
                 }
             )
             movies_to_return.append(instance)
-        return Response(data=MovieSerializer(movies_to_return, many=True).data)
+        return Response(data=MovieSerializer(movies_to_return, many=True, context={'request': request}).data)
 
 
 class FavoritesMoviesListView(ListAPIView):

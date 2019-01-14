@@ -37,7 +37,6 @@ class MoviesBrowserComponent extends React.Component {
         };
     }
 
-
     getToken() {
         return localStorage.getItem('token');
     }
@@ -71,7 +70,7 @@ class MoviesBrowserComponent extends React.Component {
                         placeholder="Movie title..."
                         value={this.state.searchValue}
                         minLength={2}
-                        debounceTimeout={700}
+                        debounceTimeout={800}
                         onChange={event => this.setState({searchValue: event.target.value})}
                     />
                 </div>
