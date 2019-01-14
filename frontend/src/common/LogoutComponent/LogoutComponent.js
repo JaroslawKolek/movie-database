@@ -1,37 +1,27 @@
 import React from 'react';
 import { Alert } from 'react-bootstrap';
 
-class LogoutComponent extends React.Component {
-    constructor(props){
-        super(props)
+import { post, getToken } from './../../utils/api';
 
-        this.state = {
-            responseStatus: undefined
-        };
+class LogoutComponent extends React.Component {
+    state = {
+        responseStatus: undefined
+    };
+
+    componentDidMount() {
         this.logout();
     }
 
-    getToken() {
-        return localStorage.getItem('token');
-    }
-
     logout = () => {
-        if(this.getToken() !== undefined){
-            fetch('http://localhost:8000/api/users/logout/', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type':'application/json',
-                    'Authorization': `Token ${this.getToken()}`
-                },
+        if(getToken() !== undefined){
+            post('/users/logout/', {}).then(response => {
+                let status = response.status;
+                this.setState({responseStatus: status})
+                if(status === 200){
+                    localStorage.setItem('token', '');
+                    localStorage.setItem('username', '');
+                }
             })
-                .then(response => {
-                    this.setState({responseStatus: response.status});
-                    if(response.status === 200){
-                        localStorage.setItem('token', '');
-                        localStorage.setItem('username', '');
-                    }
-                })
         }     
     }
 

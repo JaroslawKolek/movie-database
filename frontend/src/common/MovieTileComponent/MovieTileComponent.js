@@ -2,16 +2,13 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 
 import './MovieTileComponent.css';
+import { put } from './../../utils/api';
 
 class MovieTileComponent extends React.Component {
-    constructor(props){
-        super(props)
-
-        this.state = {
-            inFavorites: this.props.movieInformation.is_favorite
-        }
+    state = {
+        inFavorites: this.props.movieInformation.is_favorite
     }
-
+    
     IMAGE_NOT_AVAIABLE = 'https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png';
 
     getToken() {
@@ -19,22 +16,15 @@ class MovieTileComponent extends React.Component {
     }
 
     addOrRemoveToFavorites = () => {
-        fetch('http://localhost:8000/api/users/favorite-movies/', {
-            method: 'PUT',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type':'application/json',
-                'Authorization': `Token ${this.getToken()}`
-            },
-            body: JSON.stringify({
-                imdb_id: this.props.movieInformation.imdb_id
-            })
+        put('/users/favorite-movies/', JSON.stringify({
+            imdb_id: this.props.movieInformation.imdb_id
+        })).then(response => {
+            if(response.status === 200) {
+                this.setState({
+                    inFavorites: !this.state.inFavorites
+                });
+            }
         })
-            .then(response => {
-                if(response.status === 200) {
-                    this.setState({inFavorites: !this.state.inFavorites});
-                }
-            })        
     }
 
     addOrRemove = () => {

@@ -12,7 +12,6 @@ export function get(url) {
       method: 'GET',
     }).then(response =>
         response.json()
-          .then(console.warn('Bad Request'))
           .then(data => ({
             ok: response.ok,
             status: response.status,
@@ -22,4 +21,28 @@ export function get(url) {
           }))
           .catch(error => console.warn(error))
     );
+  }
+
+  export function put(url, body) {
+    return fetch(`${API_URL}${url}`, {
+      headers: new Headers({
+        'Authorization': `Token ${getToken()}`,
+        'Accept': 'application/json',
+        'Content-Type':'application/json'
+      }),
+      method: 'PUT',
+      body: body
+    })
+  }
+
+  export function post(url, body) {
+    return fetch(`${API_URL}${url}`, {
+      headers: new Headers({
+        'Authorization': `Token ${getToken()}`,
+        'Accept': 'application/json',
+        'Content-Type':'application/json'
+      }),
+      method: 'post',
+      body: body
+    })
   }
