@@ -11,13 +11,3 @@ services:
       - "8000:8000"
     depends_on:
       - database
-  # frontend:
-  #   build: ./frontend
-  #   volumes:
-  #     - ./frontend:/usr/src/app
-  #   ports:
-  #     - '3000:3000'
-  #   command: yarn start
-  #   environment:
-  #     - NODE_ENV=dev
-  #     - DOCKER=true
