@@ -95,3 +95,23 @@ class MoviesSearchViewTestCase(APITestCase):
         )
         omdb_mock.OMDBClient.return_value = omdb_mocked_instance
         return omdb_mocked_instance
+
+    @patch('movies.views.omdb')
+    def test_serializer_is_favorite_method_field(self, omdb_mock):
+        for movie_json in OMDB_CORRECT_RESPONSE:
+            Movie.objects.create(imdb_id=movie_json['imdb_id'])
+        self.assertEqual(Movie.objects.all().count(), len(OMDB_CORRECT_RESPONSE))
+
+        self.client.force_authenticate(self.user)
+        omdb_mocked_instance = self._mocked_omdb(omdb_mock)
+        fav_movie = Movie.objects.first()
+        self.user.userdetails.favorites_movies.add(fav_movie)
+        all_favorites_user_movies = self.user.userdetails.favorites_movies.all()
+
+        response = self.client.get(self.url, data={'title': 'Bond', 'page': 1})
+
+        self.assertEqual(response.status_code, 200)
+        for movie_json in response.json():
+            movie_from_db = Movie.objects.get(imdb_id=movie_json['imdb_id'])
+            self.assertEqual(movie_from_db in all_favorites_user_movies, movie_json['is_favorite'])
+            self.assertEqual(movie_from_db.title, movie_json['title'])
