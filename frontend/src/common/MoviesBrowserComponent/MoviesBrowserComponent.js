@@ -12,6 +12,7 @@ class MoviesBrowserComponent extends React.Component {
 
         this.state = {
             searchValue: '',
+            loading: true,
             pageNumber: 1,
             moviesList: [],
         };        
@@ -32,7 +33,7 @@ class MoviesBrowserComponent extends React.Component {
     }
 
     renderRedirect = () => {
-        if(typeof(this.state.moviesList) != "object"){
+        if(!this.getToken()){
             return <Redirect to='/login'/>;
         };
     }
@@ -42,6 +43,10 @@ class MoviesBrowserComponent extends React.Component {
     }
 
     getMovies = () => {
+        this.setState({
+            moviesList: [],
+            loading: true,
+        });
         fetch(`http://localhost:8000/api/movies/search/?title=${this.state.searchValue}&page=${this.state.pageNumber}`, {
             headers: {
                 'Authorization': `Token ${this.getToken()}`
@@ -49,16 +54,26 @@ class MoviesBrowserComponent extends React.Component {
             method: 'GET'
         })
             .then(res => res.json())
-            .then(result => this.setState({moviesList: result}))
+            .then(result => this.setState({
+                moviesList: result,
+                loading: false
+            }))
     }
 
     showEmptyPageInfoIfEmpty = () => {
-        if(this.state.moviesList.length === 0) {
+        if(this.state.moviesList.length === 0 && !this.state.loading) {
             return <div className="EmptyPageInfo">
                 <p className="EmptyPageTitle"> No movies here ¯\_(ツ)_/¯ </p>
                 <p className="EmptyPageTitle EmptyPageSubTitle"> Please, change filter or page number </p>
             </div>; 
         }
+    }
+
+    showLoadingScreen = () => {
+        if(this.state.loading){
+            return <p className="EmptyPageInfo EmptyPageTitle"> Loading... (ง°ل͜°)ง </p>
+        }
+        return;
     }
 
     render() {
@@ -78,6 +93,7 @@ class MoviesBrowserComponent extends React.Component {
                     { this.showEmptyPageInfoIfEmpty() }
                     <div>
                         { this.renderRedirect() }
+                        { this.showLoadingScreen() }
                         { this.state.moviesList.map((movie, index) => 
                             <MovieTileComponent movieInformation={movie} key={index}/>
                         )}
