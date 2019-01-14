@@ -12,6 +12,8 @@ class MovieTileComponent extends React.Component {
         }
     }
 
+    IMAGE_NOT_AVAIABLE = 'https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png';
+
     getToken() {
         return localStorage.getItem('token');
     }
@@ -42,11 +44,19 @@ class MovieTileComponent extends React.Component {
         return "Add to favorites";
     }
 
+    getPoster = () => {
+        let poster = this.props.movieInformation.poster_url;
+        if(this.props.movieInformation.poster_url){
+            return poster;
+        }
+        return this.IMAGE_NOT_AVAIABLE;
+    }
+
     render() {
         const movieInformation = this.props.movieInformation;
         return (
             <div className="MovieTile">
-                <img className="Poster" src={movieInformation.poster_url} alt={movieInformation.imdb_id} />
+                <img className="Poster" src={this.getPoster()} alt={movieInformation.imdb_id} />
                 <div>
                     { movieInformation.title }
                 </div>
