@@ -4,20 +4,18 @@ import { DebounceInput } from 'react-debounce-input';
 import { Redirect } from 'react-router-dom';
 
 import './MoviesBrowserComponent.css';
+import { get } from './../../utils/api';
 import MovieTileComponent from '../MovieTileComponent/MovieTileComponent';
 
 class MoviesBrowserComponent extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            searchValue: '',
-            loading: true,
-            pageNumber: 1,
-            moviesList: [],
-        };        
-    }
-
+    state = {
+        searchValue: '',
+        loading: true,
+        pageNumber: 1,
+        moviesList: [],
+        responseStatus: undefined,
+    };        
+    
     componentDidMount() {
         this.getMovies();
     }
@@ -29,17 +27,13 @@ class MoviesBrowserComponent extends React.Component {
     }
 
     handlePageChange = (number) => {
-        this.setState({pageNumber: number})
+        this.setState({pageNumber: number});
     }
 
     renderRedirect = () => {
-        if(this.getToken() === "undefined"){
+        if(this.state.responseStatus === 401) {
             return <Redirect to='/login'/>;
         };
-    }
-
-    getToken() {
-        return localStorage.getItem('token');
     }
 
     getMovies = () => {
@@ -47,17 +41,15 @@ class MoviesBrowserComponent extends React.Component {
             moviesList: [],
             loading: true,
         });
-        fetch(`http://localhost:8000/api/movies/search/?title=${this.state.searchValue}&page=${this.state.pageNumber}`, {
-            headers: {
-                'Authorization': `Token ${this.getToken()}`
-            },
-            method: 'GET'
-        })
-            .then(res => res.json())
-            .then(result => this.setState({
-                moviesList: result,
-                loading: false
-            }))
+        
+        get(`/movies/search/?title=${this.state.searchValue}&page=${this.state.pageNumber}`).then(data => {
+                this.setState({
+                    moviesList: data.data,
+                    loading: false,
+                    responseStatus: data.status
+                })
+            }
+        );
     }
 
     showEmptyPageInfoIfEmpty = () => {
@@ -76,9 +68,19 @@ class MoviesBrowserComponent extends React.Component {
         return;
     }
 
+    renderMoviesList = () => {
+        if(this.state.responseStatus === 200){
+            return this.state.moviesList.map((movie, index) => 
+                <MovieTileComponent movieInformation={movie} key={index}/>
+            )
+        }
+        return;
+    }
+
     render() {
         return (
             <div className="MovieBrowser">
+                { this.renderRedirect() }
                 <div className="FiltersSection">
                     <DebounceInput
                         type="text"
@@ -92,11 +94,8 @@ class MoviesBrowserComponent extends React.Component {
                 <div>
                     { this.showEmptyPageInfoIfEmpty() }
                     <div>
-                        { this.renderRedirect() }
                         { this.showLoadingScreen() }
-                        { this.state.moviesList.map((movie, index) => 
-                            <MovieTileComponent movieInformation={movie} key={index}/>
-                        )}
+                        { this.renderMoviesList() }
                     </div>
                     <div className="PagerSection">
                         <Pager>

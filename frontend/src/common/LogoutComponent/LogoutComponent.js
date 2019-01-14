@@ -28,7 +28,7 @@ class LogoutComponent extends React.Component {
                 .then(response => {
                     this.setState({responseStatus: response.status});
                     if(response.status === 200){
-                        localStorage.setItem('token', undefined);
+                        localStorage.setItem('token', '');
                         localStorage.setItem('username', '');
                     }
                 })

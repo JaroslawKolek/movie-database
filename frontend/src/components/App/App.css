@@ -29,3 +29,8 @@
     transform: rotate(360deg);
   }
 }
+
+.NavbarItem {
+  padding: 14px;
+  float: left;
+}

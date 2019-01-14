@@ -23,15 +23,9 @@ class App extends Component {
               <Navbar.Text>
                 Signed in as: {localStorage.getItem('username')}
               </Navbar.Text>
-              <NavItem>
-                <Link to="/search">Search</Link>
-              </NavItem>
-              <NavItem>
-                <Link to="/login">Login</Link>
-              </NavItem>
-              <NavItem>
-                <Link to="/logout">Logout</Link>
-              </NavItem>
+              <Link className="NavbarItem" to="/search">Search</Link>
+              <Link className="NavbarItem" to="/login">Login</Link>
+              <Link className="NavbarItem" to="/logout">Logout</Link>
             </Nav>
           </Navbar>
           <Route path="/search" component={ MoviesPage } />
