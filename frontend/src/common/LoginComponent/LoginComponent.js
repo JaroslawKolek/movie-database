@@ -33,14 +33,13 @@ class LoginComponent extends React.Component {
             .then(response => {
                 if(response.status === 400){
                     this.setState({error: true});
-                } else if (response.status === 200) {
-                    this.setState({success: true});
-                }
+                } 
                 return response.json();
             })
             .then( (responseData) => {
                 localStorage.setItem('token', responseData);
                 localStorage.setItem('username', this.state.username);
+                this.setState({success: true});
             },
             (error) => {
                 console.error(error);
@@ -59,7 +58,7 @@ class LoginComponent extends React.Component {
 
     redirectIfOk = () => {
         if(this.state.success) {
-            return <Redirect to='/'/>;
+            return <Redirect to='/search'/>
         }
         return;
     }
