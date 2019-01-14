@@ -28,11 +28,21 @@ class MoviesSearchView(APIView):
                 imdb_id=movie['imdb_id'],
                 defaults={
                     'title': movie['title'],
-                    'poster_url': movie['poster']
+                    'poster_url': movie['poster'] if self._is_poster_url_valid(movie['poster']) else None
                 }
             )
             movies_to_return.append(instance)
         return Response(data=MovieSerializer(movies_to_return, many=True, context={'request': request}).data)
+
+    def _is_poster_url_valid(self, url):
+        from django.core.validators import URLValidator
+        from django.core.exceptions import ValidationError
+        val = URLValidator()
+        try:
+            val(url)
+            return True
+        except ValidationError:
+            return False
 
 
 class FavoritesMoviesListView(ListAPIView):

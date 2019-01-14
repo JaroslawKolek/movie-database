@@ -33,7 +33,7 @@ class MoviesBrowserComponent extends React.Component {
     }
 
     renderRedirect = () => {
-        if(!this.getToken()){
+        if(this.getToken() === "undefined"){
             return <Redirect to='/login'/>;
         };
     }
